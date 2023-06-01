@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import './_variables.scss';
+
+html,
+body {
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+@layer components {
+	.text-shadow-primary {
+		text-shadow: #24f1a6 1px 1px 2px;
+	}
+	.underline-effect {
+		background: none repeat scroll 0 0 transparent;
+		bottom: 0;
+		content: '';
+		display: block;
+		height: 2px;
+		left: 50%;
+		position: absolute;
+		background: #fff;
+		transition: width 0.4s ease 0s, left 0.4s ease 0s;
+		width: 0;
+	}
+	.underline-effect-hover-after {
+		@apply w-[100%] left-0;
+		/* width: 100%;
+		left: 0; */
+	}
+
+	.custom-underline-effect {
+		@apply after:underline-effect hover:after:underline-effect-hover-after;
+	}
+	.custom-underline-effect-primary {
+		@apply after:underline-effect after:bg-primary hover:after:underline-effect-hover-after
+		 hover:after:bg-primary;
+	}
+
+	.about-me-point {
+		@apply dark:text-white font-inter text-xl md:pb-2;
+	}
+}
+
+.bio-selector {
+	& input {
+		color: #24f1a6;
+		text-transform: capitalize;
+	}
+	&:not(:first-of-type, :last-of-type) {
+		& label {
+			color: transparent;
+			text-transform: capitalize;
+		}
+	}
+	&:first-of-type,
+	&:last-of-type {
+		& label {
+			color: #24f1a6;
+			text-transform: capitalize;
+		}
+	}
+}
+
+.bio-ul {
+	list-style-type: none;
+}
