@@ -2,16 +2,13 @@
 	import Icon from '$src/components/Icon.svelte';
 	import { onMount } from 'svelte';
 	import socialLinks from '$data/social-links';
+	import projects from '$data/projects';
 
 	onMount(() => {
 		const links = document.querySelectorAll('nav ul li a');
-		// const sections = document.querySelectorAll<HTMLDivElement>('.right section');
+		const fabLinks = document.querySelectorAll('.quick-actions-list li a');
 
-		links.forEach((link) => {
-			link.addEventListener('click', smoothScroll);
-		});
-
-		function smoothScroll(event: any) {
+		const smoothScroll = (event: any) => {
 			event.preventDefault();
 			const targetId = event.target.getAttribute('href').substring(1);
 			const targetElement = document.getElementById(targetId);
@@ -21,15 +18,23 @@
 					behavior: 'smooth'
 				});
 			}
-		}
+		};
+
+		links.forEach((link) => {
+			link.addEventListener('click', smoothScroll);
+		});
+
+		fabLinks.forEach((link) => {
+			link.addEventListener('click', smoothScroll);
+		});
 	});
 </script>
 
 <div class="flex-grow p-0 m-0 text-white bg-dark">
 	<div class="cust-container mx-auto">
-		<div class="left">
-			<div class="container sm:px-2 lg:px-6 mx-auto mt-24 px-4 sm:mt-32 md:mt-20 lg:mt-20">
-				<p class="sm:text-4xl text-8xl font-montserrat mt-2 mb-0 uppercase name">Mohan Vaddi</p>
+		<div class="left px-4 md:px-8 lg:px-8">
+			<div class="container lg:mx-auto lg:mt-20 mt-14">
+				<p class="text-4xl lg:text-4xl font-montserrat mt-2 mb-0 uppercase name">Mohan Vaddi</p>
 				<p class="text-lg font-montserrat dark:text-white mt-1 mb-2 text-gray-300">
 					SDE @ PointMotion Inc.
 				</p>
@@ -40,7 +45,7 @@
 				</p>
 			</div>
 
-			<div class="my-8 px-6">
+			<div class="mt-6 lg:mt-8">
 				<a
 					href="assets/Mohan Vaddi - SDE.pdf"
 					class="button primary-outline !px-[0.4rem] !py-[0.3rem] fill-down"
@@ -51,7 +56,7 @@
 				</a>
 			</div>
 
-			<nav class="mt-8 px-4 lg:px-6">
+			<nav class="mt-8 hidden lg:block">
 				<ul>
 					<li>
 						<a class=" custom-underline-effect" href="#about">About</a>
@@ -71,7 +76,7 @@
 				</ul>
 			</nav>
 
-			<div class="absolute bottom-12">
+			<div class="absolute bottom-12 hidden lg:block">
 				<div class="grid grid-cols-4 m-2">
 					<div>
 						<a
@@ -128,10 +133,8 @@
 			</div>
 		</div>
 
-		<div class="right text-black d-flex">
-			<!-- Right content goes here -->
-
-			<section id="about" class="mt-12 py-8">
+		<div class="right text-black d-flex px-4 md:px-8 lg:mt-12">
+			<section id="about" class="mt-2 py-8">
 				<p class="text-lg text-gray-400">
 					As an SDE working in an early-stage startup, I possess a broad skill set that allows me to
 					contribute to all aspects of product development. My commitment to ongoing learning
@@ -145,98 +148,6 @@
 
 			<section id="experience" class="py-8">
 				<h2 class="text-2xl font-bold text-primary uppercase">Experience</h2>
-				<!--	<div class="breadcrumb my-4">
-					<div class="breadcrumb-item">
-						<div class="text-2xl text-primary">PointMotion Inc.</div>
-						<div class="grid grid-rows-1 grid-flow-col">
-							<div class="text-lg text-gray-200">Software Development Engineer</div>
-							<div class="text-lg font-bold text-right date px-4 text-gray-200">
-								August 2022 - Present
-							</div>
-						</div>
-						<div class="job-responsibilities mt-2 px-2">
-							<ul class="text-gray-300">
-								<li>
-									Developing "Sound Health", a product that leverages motion-capture technology to
-									analyze users' adherence and cognition by incorporating games and music to improve
-									quality of life.
-								</li>
-								<li>
-									Responsible for building and maintaining APIs for Object overlay games, including
-									APIs for Animations, Game logic, Collision detection and Music, contributing to
-									seamless game-play experiences.
-								</li>
-								<li>
-									Designed and developed a user-friendly mobile application that can be used as a
-									remote control to manipulate the games, which helped in improving the efficiency
-									and effectiveness of testing processes.
-								</li>
-								<li>
-									Contributed to the development of a chrome extension for user testers to easily
-									record and share videos.
-								</li>
-								<li>
-									Contributed to the development of a desktop application to automate system
-									accuracy testing and eliminated the need for manual testing efforts.
-								</li>
-								<li>
-									Worked on planning and Implementation of the back-end infrastructure for Stripe
-									payment systems for the entire platform that encompass various functionalities
-									such as subscription plans, automated payments, and coupon systems.
-								</li>
-								<li>
-									Worked on the back-end implementation of diverse systems, including
-									authentication, analytics, and rewards systems.
-								</li>
-								<li>
-									Translated various product designs to responsive UI using Angular, Bootstrap, and
-									SCSS on the front-end.
-								</li>
-								<li>
-									Created comprehensive technical documentation and videos outlining the
-									functionality of select features.
-								</li>
-								<li>
-									Extensively collaborated with design, product, and business teams to understand
-									their needs and develop successful features.
-								</li>
-								<li>
-									Skills: Angular, Bootstrap, Phaser3, PostgreSQL, GraphQL, Hasura, NestJS, Ionic,
-									Tauri, Rust, AWS Cloud Services (S3, SNS, Pinpoint), Novu, Stripe, Google
-									Analytics, Mediapipe.
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="breadcrumb-item">
-						<div class="text-2xl text-primary">CodeTantra</div>
-						<div class="grid grid-rows-1 grid-flow-col">
-							<div class="text-lg text-gray-200">Intern</div>
-							<div class="text-lg font-bold text-right date px-4 text-gray-200">
-								May 2021 - August 2021
-							</div>
-						</div>
-						<div class="job-responsibilities mt-2 px-2">
-							<ul class="text-gray-300">
-								<li>
-									Contributed to the development of a platform that helped various educational
-									institutions across India in facilitating online classes, exams, courses, and
-									performance reports.
-								</li>
-								<li>Contributed to the development of automated and manual proctoring systems.</li>
-								<li>
-									Responsible for back-end implementation and maintenance of diverse systems,
-									including Attendance management, Reports, Question banks and certificate systems.
-								</li>
-								<li>
-									Translated various product designs to responsive UI. Skills: ReactJs, Spring Boot,
-									Java, MongoDB, Docker
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div> -->
-
 				<div class="mt-4">
 					<div class="text-xl text-primary">PointMotion Inc.</div>
 					<div class="grid grid-rows-1 grid-flow-col">
@@ -373,98 +284,38 @@
 			<section id="projects" class="py-8">
 				<h2 class="text-2xl font-bold text-primary mb-6 uppercase">Projects</h2>
 				<div class="project-list text-gray-300">
-					<div class="project-card bg-gray-800">
-						<h3 class="project-title">Arbeit Web</h3>
-						<p class="project-description text-gray-400">
-							Designed and implemented a platform for daily-wage workers, which aimed to streamline
-							the process of finding workers in a given area and making work arrangements quickly
-							and easily.
-						</p>
-						<div class="project-links">
-							<a
-								class="primary-outline button !px-[0.4rem] !py-[0.3rem] !bg-gray-800 github-links"
-								href="https://github.com/mohanvaddi/arbeit-web"
-								target="_blank"
-								rel="noopener noreferrer">GitHub</a
-							>
-							<!-- <a
-								class="demo-link"
-								href="https://project1-demo.com"
-								target="_blank"
-								rel="noopener noreferrer">Demo</a
-							> -->
+					{#each projects as { name, description, github, demo }, i}
+						<div class="project-card bg-gray-800">
+							<h3 class="project-title">{name}</h3>
+							<p class="project-description text-gray-400">
+								{description}
+							</p>
+							<div class="project-links">
+								{#if github}
+									<a
+										class="primary-outline button !px-[0.4rem] !py-[0.3rem] !bg-gray-800 github-links"
+										href={github}
+										target="_blank"
+										rel="noopener noreferrer">GitHub</a
+									>
+								{/if}
+								{#if demo}
+									<a
+										class="primary-outline button !px-[0.4rem] !py-[0.3rem] !bg-gray-800"
+										href={demo}
+										target="_blank"
+										rel="noopener noreferrer">Demo</a
+									>
+								{/if}
+							</div>
 						</div>
-					</div>
-					<div class="project-card bg-gray-800">
-						<h3 class="project-title">Pocket OCR</h3>
-						<p class="project-description text-gray-400">
-							Developed a web-based OCR application that extracts text from images, while also
-							generating searchable and copyable PDFs.
-						</p>
-						<div class="project-links">
-							<a
-								class="primary-outline button !px-[0.4rem] !py-[0.3rem] !bg-gray-800"
-								href="https://github.com/mohanvaddi/Pocket-Ocr-Client"
-								target="_blank"
-								rel="noopener noreferrer">GitHub</a
-							>
-							<!-- <a
-								class="demo-link"
-								href="https://project1-demo.com"
-								target="_blank"
-								rel="noopener noreferrer">Demo</a
-							> -->
-						</div>
-					</div>
-					<div class="project-card bg-gray-800">
-						<h3 class="project-title">Gmeet AMS</h3>
-						<p class="project-description text-gray-400">
-							A web-based attendance management tool for Google Meet. Tracks user attendance,
-							exports data in Excel format. Ideal for online classes, student attendance.
-						</p>
-						<div class="project-links">
-							<a
-								class="primary-outline button !px-[0.4rem] !py-[0.3rem] !bg-gray-800"
-								href="https://github.com/mohanvaddi/gmeet-ams"
-								target="_blank"
-								rel="noopener noreferrer">GitHub</a
-							>
-							<!-- <a
-								class="demo-link"
-								href="https://project1-demo.com"
-								target="_blank"
-								rel="noopener noreferrer">Demo</a
-							> -->
-						</div>
-					</div>
-					<div class="project-card bg-gray-800">
-						<h3 class="project-title">Java Pad</h3>
-						<p class="project-description text-gray-400">
-							Lightweight Java-based text editor with auto-completions, auto-save, and recovery.
-							Built using JavaFX, awt, and Swing. Ideal for Java programming with efficient
-							performance on older laptops.
-						</p>
-						<div class="project-links">
-							<a
-								class="primary-outline button !px-[0.4rem] !py-[0.3rem] !bg-gray-800"
-								href="https://github.com/mohanvaddi/JavaPad"
-								target="_blank"
-								rel="noopener noreferrer">GitHub</a
-							>
-							<!-- <a
-								class="demo-link"
-								href="https://project1-demo.com"
-								target="_blank"
-								rel="noopener noreferrer">Demo</a
-							> -->
-						</div>
-					</div>
+					{/each}
 				</div>
 			</section>
 
 			<div class="separator" />
 
-			<section id="contact-me" class="py-8">
+			<section id="contact-me" class="py-8 mb-8 lg:mb-12">
 				<h2 class="text-2xl font-bold text-primary uppercase">Get In Touch</h2>
 				<p class="mt-4 text-md text-gray-400">
 					My inbox is always open. Whether you have a question or just want to say hi, I’ll try my
@@ -484,6 +335,19 @@
 		</div>
 	</div>
 </div>
+
+<!-- <div class="quick-actions-wrapper">
+	<Icon icon="user-cicle-solid" class="absolute z-10 right-[50%] bottom-[50%]" type="solid" />
+	<input type="checkbox" name="quick-actions-toggle" class="quick-actions-toggle" />
+	<a class="quick-actions-button" href="#!"><i class="fas fa-bolt" /></a>
+	<ul class="quick-actions-list">
+		<li><a href="#about">About</a></li>
+		<li><a href="#experience">Experience</a></li>
+		<li><a href="#education">Education</a></li>
+		<li><a href="#projects">Projects</a></li>
+		<li><a href="#contact-me">Contact Me</a></li>
+	</ul>
+</div> -->
 
 <style lang="scss">
 	/* Modify the scrollbar track */
@@ -521,11 +385,9 @@
 
 	.cust-container {
 		display: grid;
-		grid-template-columns: 0.75fr 1fr;
-		/* gap: 1rem; */
 		height: 100vh;
-		width: 80vw;
 		background-color: #0f172a;
+		@apply sm:w-[100vw] md:w-[100vw] lg:w-[80vw] lg:grid-cols-[0.75fr_1fr] overflow-auto;
 	}
 
 	nav {
@@ -541,20 +403,23 @@
 	}
 
 	.left {
-		position: sticky;
-		top: 0;
-		height: 100%;
-		overflow: auto;
-		padding: 1rem;
+		// position: sticky;
+		// top: 0;
+		// height: 100%;
+		// overflow: auto;
+		// padding: 1rem;
+
+		@apply lg:sticky lg:h-full lg:top-0 lg:p-4;
 	}
 
 	.right {
-		overflow: auto;
-		padding: 1rem;
+		// overflow: auto;
+		// padding: 1rem;
 		section {
 			position: relative;
 			z-index: 1;
 		}
+		@apply lg:overflow-auto lg:p-4;
 	}
 
 	.date {
@@ -613,7 +478,8 @@
 		position: relative;
 		z-index: 2;
 		height: 2px;
-		background-color: #ddd;
+		// background-color: #ddd;
+		@apply bg-gray-400;
 	}
 
 	#projects {
@@ -623,8 +489,9 @@
 
 	.project-list {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+		// grid-template-columns: repeat(2, 1fr);
 		gap: 1rem;
+		@apply md:grid-cols-[repeat(2,1fr)];
 	}
 
 	.project-card {
@@ -632,7 +499,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		width: 100%;
-		max-width: 400px;
+		max-width: 750px;
 		border-radius: 8px;
 		padding: 20px;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
