@@ -11,6 +11,7 @@ body {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+	scroll-behavior: smooth;
 }
 
 @layer components {
@@ -72,92 +73,97 @@ body {
 	list-style-type: none;
 }
 
-// .quick-actions-wrapper {
-// 	z-index: 2;
-// 	position: fixed;
-// 	bottom: 20px;
-// 	right: 20px;
-// }
+.fab-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	user-select: none;
+	position: absolute;
+	bottom: 30px;
+	right: 20px;
+	&:hover {
+		cursor: pointer;
+	}
+	&.active {
+		height: 100%;
+		.sub-button:nth-child(2) {
+			transform: translateY(-80px);
+		}
+		.sub-button:nth-child(3) {
+			transform: translateY(-140px);
+		}
+		.sub-button:nth-child(4) {
+			transform: translateY(-200px);
+		}
+		.sub-button:nth-child(5) {
+			transform: translateY(-260px);
+		}
+		.sub-button:nth-child(6) {
+			transform: translateY(-320px);
+		}
+	}
+	.fab {
+		position: relative;
+		height: 50px;
+		width: 50px;
+		border-radius: 50%;
+		z-index: 3;
+		@apply bg-gray-600;
+	}
+	.sub-button {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: white;
+		// bottom: 5px;
+		// right: 10px;
+		// height: 50px;
+		// width: 50px;
+		// border-radius: 50%;
+		transition: all 0.3s ease;
+		z-index: 2;
+		&:hover {
+			cursor: pointer;
+			background-color: $primary;
+			.icon {
+				color: white;
+				font-size: 30px;
+			}
+			.btn-text {
+				color: white;
+			}
+		}
+		.icon {
+			color: $primary;
+			font-size: 26px;
+		}
+	}
+}
 
-// .quick-actions-toggle {
-// 	appearance: none;
-// 	position: absolute;
-// 	border-radius: 50%;
-// 	top: 0;
-// 	left: 0;
-// 	margin: 0;
-// 	width: 100%;
-// 	height: 100%;
-// 	cursor: pointer;
-// 	background-color: transparent;
-// 	border: none;
-// 	outline: none;
-// 	z-index: 2;
-// 	transition: box-shadow 0.2s ease-in-out;
-// 	box-shadow: 0 3px 5px 1px rgba(51, 51, 51, 0.3);
-// }
+.btn-text {
+	position: absolute;
+	right: -20px;
+	top: -15px;
+	transform: translateY(-50%);
+	white-space: nowrap;
+	color: $primary;
+	padding: 0.4rem 0.6rem;
+	@apply rounded-md bg-gray-600 text-primary;
+}
 
-// .quick-actions-toggle:hover {
-// 	box-shadow: 0 3px 6px 2px rgba(51, 51, 51, 0.3);
-// }
+.overlay {
+	display: none;
+}
 
-// .quick-actions-toggle:checked ~ .quick-actions-list {
-// 	opacity: 1;
-// 	visibility: visible;
-// 	transform: translateY(0%);
-// }
-
-// .quick-actions-button {
-// 	height: 56px;
-// 	width: 56px;
-// 	background-color: $primary;
-// 	border-radius: 50%;
-// 	color: #fff;
-// 	z-index: 1;
-// 	display: flex;
-// 	align-items: center;
-// 	justify-content: center;
-// 	text-decoration: none;
-// }
-
-// .quick-actions-button i {
-// 	font-size: 16px;
-// 	transform: rotate(0deg);
-// 	transition: all 0.4s;
-// }
-
-// .quick-actions-list {
-// 	position: absolute;
-// 	bottom: 70px;
-// 	right: 5px;
-// 	opacity: 0;
-// 	visibility: hidden;
-// 	transform: translateY(50%);
-// 	transition: all 0.3s ease-in-out;
-// }
-
-// .quick-actions-list li {
-// 	width: 100%;
-// 	float: right;
-// 	list-style: none;
-// 	text-align: right;
-// 	margin-bottom: 5px;
-// }
-
-// .quick-actions-list li a {
-// 	padding: 8px 15px;
-// 	display: inline-block;
-// 	color: $primary;
-// 	border-radius: 5px;
-// 	text-decoration: none;
-// 	overflow: hidden;
-// 	white-space: nowrap;
-// 	transition: all 0.4s;
-// 	// border: solid 0.1px $primary;
-
-// 	@apply bg-gray-800;
-// }
-
-// .quick-actions-list li a:hover {
-// 	margin-right: 10px;
-// }
+.overlay.active {
+	display: flex;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.72);
+	z-index: 1;
+}

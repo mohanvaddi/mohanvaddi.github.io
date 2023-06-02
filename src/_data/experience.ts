@@ -4,11 +4,11 @@ export default [
 		roles: [
 			{
 				role: 'Software Development Engineer',
-				period: 'August 2022 - Present'
+				period: 'Aug 2022 - Present'
 			},
 			{
 				role: 'SDE Intern',
-				period: 'April 2022 - July 2022'
+				period: 'Apr 2022 - Jul 2022'
 			}
 		],
 		description: [
@@ -30,7 +30,7 @@ export default [
 		roles: [
 			{
 				role: 'Intern',
-				period: 'May 2021 - August 2021'
+				period: 'May 2021 - Aug 2021'
 			}
 		],
 		description: [

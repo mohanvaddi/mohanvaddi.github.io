@@ -7,28 +7,42 @@
 	import education from '$data/education';
 	import about from '$data/about';
 
+	let fab: boolean = false;
+
+	const scrollIntoView = (targetId: string) => {
+		const targetElement = document.getElementById(targetId);
+		if (targetElement) {
+			targetElement.scrollIntoView({
+				behavior: 'smooth'
+			});
+		}
+	};
+
 	onMount(() => {
-		const smoothScroll = (event: any) => {
+		const smoothScroll = (event: MouseEvent) => {
 			event.preventDefault();
-			const targetId: string = event.target.getAttribute('href').substring(1);
-			const targetElement = document.getElementById(targetId);
-			if (targetElement) {
-				targetElement.scrollIntoView({
-					behavior: 'smooth'
-				});
-			}
+			const targetId: string = (event.target as HTMLAnchorElement)
+				.getAttribute('href')!
+				.substring(1);
+			scrollIntoView(targetId);
 		};
 
 		// adding smoothScroll to the links
 		const links = document.querySelectorAll('nav ul li a');
 		links.forEach((link) => {
-			link.addEventListener('click', smoothScroll);
+			link.addEventListener('click', smoothScroll as EventListener);
 		});
 
-		// const fabLinks = document.querySelectorAll('.quick-actions-list li a');
-		// fabLinks.forEach((link) => {
-		// 	link.addEventListener('click', smoothScroll);
-		// });
+		const fabLinks = document.querySelectorAll('.fab-container a');
+		fabLinks.forEach((link) => {
+			link.addEventListener('click', smoothScroll as EventListener);
+		});
+
+		document.addEventListener('keydown', (e) => {
+			if (e.code === 'KeyF') {
+				fab = !fab;
+			}
+		});
 	});
 
 	const sections: { name: string; route: string }[] = [
@@ -53,6 +67,7 @@
 			route: '#contact-me'
 		}
 	];
+	const sectionsRev = sections.slice().reverse();
 
 	/**
 	 * @description This function is used to insert html tags for bold and anchor tags
@@ -116,7 +131,7 @@
 							href={link}
 						>
 							<Icon
-								class="m-3 hover:scale-[1.1] active:scale-[0.95]"
+								class="mr-3 hover:scale-[1.1] active:scale-[0.95]"
 								type="solid"
 								icon={name}
 								height="32px"
@@ -242,18 +257,54 @@
 	</div>
 </div>
 
-<!-- <div class="quick-actions-wrapper">
-	<Icon icon="user-cicle-solid" class="absolute z-10 right-[50%] bottom-[50%]" type="solid" />
-	<input type="checkbox" name="quick-actions-toggle" class="quick-actions-toggle" />
-	<a class="quick-actions-button" href="#!"><i class="fas fa-bolt" /></a>
-	<ul class="quick-actions-list">
-		<li><a href="#about">About</a></li>
-		<li><a href="#experience">Experience</a></li>
-		<li><a href="#education">Education</a></li>
-		<li><a href="#projects">Projects</a></li>
-		<li><a href="#contact-me">Contact Me</a></li>
-	</ul>
-</div> -->
+<div
+	class="fab-container"
+	class:active={fab}
+	on:click={() => {
+		fab = !fab;
+	}}
+	on:keydown={(e) => {
+		if (e.key === 'Escape') {
+			fab = false;
+		}
+	}}
+>
+	<div class="fab shadow">
+		<div class="fab-content">
+			<Icon
+				class="icon absolute left-[25%] top-[25%]"
+				icon="paper-airplane"
+				height="32px"
+				width="32px"
+				type="solid"
+			/>
+		</div>
+	</div>
+	{#each sectionsRev as { name, route }}
+		<a
+			href={route}
+			class="sub-button shadow fab-opt"
+			on:click={(e) => {
+				scrollIntoView(route.substring(1));
+			}}
+		>
+			<div class:hidden={!fab} class="btn-text">{name}</div>
+		</a>
+	{/each}
+</div>
+
+<div
+	class="overlay"
+	on:click={() => {
+		fab = false;
+	}}
+	on:keydown={(e) => {
+		if (e.key === 'Escape') {
+			fab = false;
+		}
+	}}
+	class:active={fab}
+/>
 
 <style lang="scss">
 	/* Modify the scrollbar track */
@@ -449,10 +500,5 @@
 	.project-links {
 		display: flex;
 		justify-content: space-between;
-	}
-
-	.active {
-		font-weight: bold;
-		color: #ff0000 !important; /* Update with your desired active link color */
 	}
 </style>
