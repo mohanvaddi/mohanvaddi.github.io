@@ -32,8 +32,6 @@ body {
 	}
 	.underline-effect-hover-after {
 		@apply w-[100%] left-0;
-		/* width: 100%;
-		left: 0; */
 	}
 
 	.custom-underline-effect {
@@ -118,11 +116,6 @@ body {
 		align-items: center;
 		justify-content: center;
 		background-color: white;
-		// bottom: 5px;
-		// right: 10px;
-		// height: 50px;
-		// width: 50px;
-		// border-radius: 50%;
 		transition: all 0.3s ease;
 		z-index: 2;
 		&:hover {
