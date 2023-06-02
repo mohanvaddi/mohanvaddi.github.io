@@ -1,6 +1,8 @@
-export default {
-	github: 'https://github.com/mohanvaddi',
-	linkedIn: 'https://www.linkedin.com/in/mohanvaddi',
-	twitter: 'https://twitter.com/immohanvaddi',
-	email: 'myselfgeek01@gmail.com'
-};
+export default [
+	{
+		name: 'github',
+		link: 'https://github.com/mohanvaddi'
+	},
+	{ name: 'linkedIn', link: 'https://www.linkedin.com/in/mohanvaddi' },
+	{ name: 'twitter', link: 'https://twitter.com/immohanvaddi' }
+] as { name: string; link: string }[];

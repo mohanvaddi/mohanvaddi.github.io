@@ -3,16 +3,15 @@
 	import { onMount } from 'svelte';
 	import socialLinks from '$data/social-links';
 	import projects from '$data/projects';
+	import experience from '$data/experience';
+	import education from '$data/education';
+	import about from '$data/about';
 
 	onMount(() => {
-		const links = document.querySelectorAll('nav ul li a');
-		const fabLinks = document.querySelectorAll('.quick-actions-list li a');
-
 		const smoothScroll = (event: any) => {
 			event.preventDefault();
-			const targetId = event.target.getAttribute('href').substring(1);
+			const targetId: string = event.target.getAttribute('href').substring(1);
 			const targetElement = document.getElementById(targetId);
-
 			if (targetElement) {
 				targetElement.scrollIntoView({
 					behavior: 'smooth'
@@ -20,34 +19,74 @@
 			}
 		};
 
+		// adding smoothScroll to the links
+		const links = document.querySelectorAll('nav ul li a');
 		links.forEach((link) => {
 			link.addEventListener('click', smoothScroll);
 		});
 
-		fabLinks.forEach((link) => {
-			link.addEventListener('click', smoothScroll);
-		});
+		// const fabLinks = document.querySelectorAll('.quick-actions-list li a');
+		// fabLinks.forEach((link) => {
+		// 	link.addEventListener('click', smoothScroll);
+		// });
 	});
+
+	const sections: { name: string; route: string }[] = [
+		{
+			name: 'About',
+			route: '#about'
+		},
+		{
+			name: 'Experience',
+			route: '#experience'
+		},
+		{
+			name: 'Education',
+			route: '#education'
+		},
+		{
+			name: 'Projects',
+			route: '#projects'
+		},
+		{
+			name: 'Contact Me',
+			route: '#contact-me'
+		}
+	];
+
+	/**
+	 * @description This function is used to insert html tags for bold and anchor tags
+	 * @param line Line of text
+	 */
+	const insertHtml = (line: string) => {
+		const boldRegex = /\*(.*?)\*/g;
+		const anchorRegex = /\[(.*?)\]\((.*?)\)/g;
+		const html = line
+			.replace(boldRegex, '<span class="text-white">$1</span>')
+			.replace(
+				anchorRegex,
+				'<a class="custom-underline-effect" href="$2" target="_blank"><span class="text-white">$1</span></a>'
+			);
+		return html;
+	};
 </script>
 
 <div class="flex-grow p-0 m-0 text-white bg-dark">
 	<div class="cust-container mx-auto">
 		<div class="left px-4 md:px-8 lg:px-8">
 			<div class="container lg:mx-auto lg:mt-20 mt-14">
-				<p class="text-4xl lg:text-4xl font-montserrat mt-2 mb-0 uppercase name">Mohan Vaddi</p>
+				<p class="text-4xl lg:text-4xl font-montserrat mt-2 mb-0 uppercase name">{about.name}</p>
 				<p class="text-lg font-montserrat dark:text-white mt-1 mb-2 text-gray-300">
-					SDE @ PointMotion Inc.
+					{about.subHead}
 				</p>
 				<p class="text-lg font-inter text-gray-300 w-4/5">
-					I build accessible, inclusive products and digital experiences for the web. If you're
-					interested in learning more about me, check out my LinkedIn Profile and feel free to
-					connect with me there.
+					{about.desc}
 				</p>
 			</div>
 
 			<div class="mt-6 lg:mt-8">
 				<a
-					href="assets/Mohan Vaddi - SDE.pdf"
+					href={about.resumeHref}
 					class="button primary-outline !px-[0.4rem] !py-[0.3rem] fill-down"
 					target="_blank"
 				>
@@ -58,77 +97,33 @@
 
 			<nav class="mt-8 hidden lg:block">
 				<ul>
-					<li>
-						<a class=" custom-underline-effect" href="#about">About</a>
-					</li>
-					<li>
-						<a class=" custom-underline-effect" href="#experience">Experience</a>
-					</li>
-					<li>
-						<a class=" custom-underline-effect" href="#education">Education</a>
-					</li>
-					<li>
-						<a class=" custom-underline-effect" href="#projects">Projects</a>
-					</li>
-					<li>
-						<a class=" custom-underline-effect" href="#contact-me">Get In Touch</a>
-					</li>
+					{#each sections as { name, route }}
+						<li>
+							<a class="custom-underline-effect" href={route}>{name}</a>
+						</li>
+					{/each}
 				</ul>
 			</nav>
 
 			<div class="absolute bottom-12 hidden lg:block">
-				<div class="grid grid-cols-4 m-2">
-					<div>
+				<div class="grid grid-cols-3">
+					{#each socialLinks as { name, link }}
 						<a
 							target="_blank"
 							rel="noreferrer"
 							data-sound-hover="pop"
 							data-sound-click="click"
-							href={socialLinks.github}
+							href={link}
 						>
 							<Icon
 								class="m-3 hover:scale-[1.1] active:scale-[0.95]"
 								type="solid"
-								icon="github"
+								icon={name}
 								height="32px"
 								width="32px"
 							/></a
 						>
-					</div>
-					<div>
-						<a
-							target="_blank"
-							rel="noreferrer"
-							data-sound-hover="pop"
-							data-sound-click="click"
-							href={socialLinks.linkedIn}
-						>
-							<Icon
-								class="m-3 hover:scale-[1.1] active:scale-[0.95]"
-								type="solid"
-								icon="linkedIn"
-								height="32px"
-								width="32px"
-							/></a
-						>
-					</div>
-					<div>
-						<a
-							target="_blank"
-							rel="noreferrer"
-							data-sound-hover="pop"
-							data-sound-click="click"
-							href={socialLinks.twitter}
-						>
-							<Icon
-								class="m-3 hover:scale-[1.1] active:scale-[0.95]"
-								type="solid"
-								icon="twitter"
-								height="32px"
-								width="32px"
-							/></a
-						>
-					</div>
+					{/each}
 				</div>
 			</div>
 		</div>
@@ -136,11 +131,7 @@
 		<div class="right text-black d-flex px-4 md:px-8 lg:mt-12">
 			<section id="about" class="mt-2 py-8">
 				<p class="text-lg text-gray-400">
-					As an SDE working in an early-stage startup, I possess a broad skill set that allows me to
-					contribute to all aspects of product development. My commitment to ongoing learning
-					enables me to remain up-to-date with emerging industry trends and advancements. I am a
-					dedicated team player who is always willing to take on new challenges and adapt to
-					evolving project requirements.
+					{about.about}
 				</p>
 			</section>
 
@@ -148,135 +139,58 @@
 
 			<section id="experience" class="py-8">
 				<h2 class="text-2xl font-bold text-primary uppercase">Experience</h2>
-				<div class="mt-4">
-					<div class="text-xl text-primary">PointMotion Inc.</div>
-					<div class="grid grid-rows-1 grid-flow-col">
-						<div class="text-lg text-gray-200">Software Development Engineer</div>
-						<div class="text-md font-bold text-right date px-4 text-gray-200">
-							August 2022 - Present
+				{#each experience as { companyName, roles, description }}
+					<div class="mt-4">
+						<div class="text-xl text-primary">{companyName}</div>
+						{#each roles as { role, period }}
+							<div class="grid grid-rows-1 grid-flow-col">
+								<div class="text-lg text-gray-200">{role}</div>
+								<div class="text-md font-bold text-right date px-4 text-gray-200">
+									{period}
+								</div>
+							</div>
+						{/each}
+						<div class="description">
+							<div class="job-responsibilities mt-2 px-2">
+								<ul class="text-gray-400 text-md">
+									{#each description as line}
+										<li>{@html insertHtml(line)}</li>
+									{/each}
+								</ul>
+							</div>
 						</div>
 					</div>
-					<div class="grid grid-rows-1 grid-flow-col">
-						<div class="text-lg text-gray-200">SDE Intern</div>
-						<div class="text-md font-bold text-right date px-4 text-gray-200">
-							April 2022 - july 2022
-						</div>
-					</div>
-					<div class="description">
-						<div class="job-responsibilities mt-2 px-2">
-							<ul class="text-gray-400 text-md">
-								<li>
-									Developing <span class="text-white"
-										>"<a href="https://pointmotion.us/sound-health/" class="custom-underline-effect"
-											>Sound Health</a
-										>"</span
-									>, a product that leverages motion-capture technology to analyze users' adherence
-									and cognition by incorporating games and music to improve quality of life.
-								</li>
-								<li>
-									Responsible for building and maintaining APIs for Object overlay games, including
-									APIs for Animations, Game logic, Collision detection and Music, contributing to
-									seamless game-play experiences.
-								</li>
-								<li>
-									Designed and developed a user-friendly mobile application that can be used as a
-									remote control to manipulate the games, which helped in improving the efficiency
-									and effectiveness of testing processes.
-								</li>
-								<li>
-									Contributed to the development of a chrome extension for user testers to easily
-									record and share videos.
-								</li>
-								<li>
-									Contributed to the development of a desktop application to automate system
-									accuracy testing and eliminated the need for manual testing efforts.
-								</li>
-								<li>
-									Worked on planning and Implementation of the back-end infrastructure for Stripe
-									payment systems for the entire platform that encompass various functionalities
-									such as subscription plans, automated payments, and coupon systems.
-								</li>
-								<li>
-									Worked on the back-end implementation of diverse systems, including
-									authentication, analytics, and rewards systems.
-								</li>
-								<li>
-									Translated various product designs to responsive UI using Angular, Bootstrap, and
-									SCSS on the front-end.
-								</li>
-								<li>
-									Created comprehensive technical documentation and videos outlining the
-									functionality of select features.
-								</li>
-								<li>
-									Extensively collaborated with design, product, and business teams to understand
-									their needs and develop successful features.
-								</li>
-								<li>
-									Skills: Angular, Bootstrap, Phaser3, PostgreSQL, GraphQL, Hasura, NestJS, Ionic,
-									Tauri, Rust, AWS Cloud Services (S3, SNS, Pinpoint), Novu, Stripe, Google
-									Analytics, Mediapipe.
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-				<div class="mt-4">
-					<div class="text-xl text-primary">CodeTantra</div>
-					<div class="grid grid-rows-1 grid-flow-col">
-						<div class="text-lg text-gray-200">Intern</div>
-						<div class="text-md font-bold text-right date px-4 text-gray-200">
-							May 2021 - August 2021
-						</div>
-					</div>
-					<div class="description">
-						<div class="job-responsibilities mt-2 px-2">
-							<ul class="text-gray-400">
-								<li>
-									Contributed to the development of a platform that helped various educational
-									institutions across India in facilitating online classes, exams, courses, and
-									performance reports.
-								</li>
-								<li>Contributed to the development of automated and manual proctoring systems.</li>
-								<li>
-									Responsible for back-end implementation and maintenance of diverse systems,
-									including Attendance management, Reports, Question banks and certificate systems.
-								</li>
-								<li>Translated various product designs to responsive UI.</li>
-								<li>Skills: ReactJs, Spring Boot, Java, MongoDB, Docker</li>
-							</ul>
-						</div>
-						<!-- Add more timeline items as needed -->
-					</div>
-				</div>
+				{/each}
 			</section>
 
 			<div class="separator" />
 
 			<section id="education" class="py-8">
 				<h2 class="text-2xl font-bold text-primary uppercase">Education</h2>
-
-				<div class="mt-4">
-					<div class="text-xl text-primary">RGUKT-IIIT, Srikakulam</div>
-					<div class="grid grid-rows-1 grid-flow-col">
-						<div class="text-lg text-gray-200">B.Tech in Computer Science and Engineering</div>
-						<div class="text-md font-bold text-right date px-4 text-gray-200">
-							june 2018 - may 2022
+				{#each education as { universityName, qualification, stream, period, description }}
+					<div class="mt-4">
+						<div class="text-xl text-primary">{universityName}</div>
+						<div class="grid grid-rows-1 grid-flow-col">
+							<div class="text-lg text-gray-200">
+								{qualification} in {stream}
+							</div>
+							<div class="text-md font-bold text-right date px-4 text-gray-200">
+								{period}
+							</div>
 						</div>
+						{#each description as line}
+							<div class="description">
+								<div class="job-responsibilities mt-2 px-2">
+									<ul class="text-gray-400">
+										<li>
+											{@html insertHtml(line)}
+										</li>
+									</ul>
+								</div>
+							</div>
+						{/each}
 					</div>
-					<div class="description">
-						<div class="job-responsibilities mt-2 px-2">
-							<ul class="text-gray-400">
-								<li>
-									Relevant Coursework: Data Structures and Algorithms, Structured Programming
-									Approach, Database Management System, Computer Networks, Software Engineering,
-									Compiler Design, DAA
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+				{/each}
 			</section>
 
 			<div class="separator" />
@@ -284,29 +198,21 @@
 			<section id="projects" class="py-8">
 				<h2 class="text-2xl font-bold text-primary mb-6 uppercase">Projects</h2>
 				<div class="project-list text-gray-300">
-					{#each projects as { name, description, github, demo }, i}
+					{#each projects as { name, description, links }, i}
 						<div class="project-card bg-gray-800">
 							<h3 class="project-title">{name}</h3>
 							<p class="project-description text-gray-400">
 								{description}
 							</p>
 							<div class="project-links">
-								{#if github}
+								{#each links as { name, link }}
 									<a
-										class="primary-outline button !px-[0.4rem] !py-[0.3rem] !bg-gray-800 github-links"
-										href={github}
+										class="primary-outline button !px-[0.4rem] !py-[0.3rem] !bg-gray-800 capitalize"
+										href={link}
 										target="_blank"
-										rel="noopener noreferrer">GitHub</a
+										rel="noopener noreferrer">{name}</a
 									>
-								{/if}
-								{#if demo}
-									<a
-										class="primary-outline button !px-[0.4rem] !py-[0.3rem] !bg-gray-800"
-										href={demo}
-										target="_blank"
-										rel="noopener noreferrer">Demo</a
-									>
-								{/if}
+								{/each}
 							</div>
 						</div>
 					{/each}
@@ -324,7 +230,7 @@
 
 				<div class="mt-8">
 					<a
-						href="mailto:mohan.vsnvm@gmail.com"
+						href="mailto:{about.email}"
 						class="button primary-outline !px-[0.4rem] !py-[0.3rem] fill-down"
 					>
 						<Icon icon="user-cicle-solid" type="solid" />
