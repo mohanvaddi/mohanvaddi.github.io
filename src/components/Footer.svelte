@@ -25,7 +25,7 @@
 			{#each footerLinks as { displayName, link }}
 				<a
 					target="blank"
-					class="dark:text-primary font-inter font-semibold relative after:underline-effect dark:after:bg-primary hover:after:underline-effect-hover-after "
+					class="dark:text-primary font-inter font-semibold relative after:underline-effect dark:after:bg-primary hover:after:underline-effect-hover-after"
 					href={link}>{displayName}</a
 				>
 			{/each}
@@ -34,7 +34,7 @@
 </div>
 
 <div class="sm:hidden w-full h-auto dark:bg-dark dark:text-white border-t-2 border-t-primary">
-	<div class="grid grid-cols-4 ">
+	<div class="grid grid-cols-4">
 		<div class="grid grid-rows-2 px-2 pb-2 pt-4">
 			<div class="text-center justify-center align-middle items-center">
 				<Icon width="24px" height="24px" icon="email" type="solid" />
@@ -47,7 +47,7 @@
 			<div class="text-center justify-center align-middle items-center">
 				<Icon width="24px" height="24px" icon="email" type="solid" />
 			</div>
-			<div class="text-center ">
+			<div class="text-center">
 				<p class="text-sm">Contact me</p>
 			</div>
 		</div>
