@@ -6,8 +6,12 @@
 	import experience from '$data/experience';
 	import education from '$data/education';
 	import about from '$data/about';
+	import type { PageData } from './$types';
 
 	let fab: boolean = false;
+
+	export let data: PageData;
+	console.log(data.likedSongs);
 
 	const scrollIntoView = (targetId: string) => {
 		const targetElement = document.getElementById(targetId);

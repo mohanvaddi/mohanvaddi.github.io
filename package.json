@@ -43,6 +43,7 @@
 	"dependencies": {
 		"@fontsource/inter": "^5.0.2",
 		"@fontsource/montserrat": "^5.0.2",
+		"axios": "^1.4.0",
 		"svelte-preprocess": "^5.0.4"
 	}
 }
