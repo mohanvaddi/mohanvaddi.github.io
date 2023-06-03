@@ -75,7 +75,7 @@
 		<div class="left px-4 md:px-8 lg:px-8">
 			<div class="container lg:mx-auto lg:mt-20 mt-14">
 				<p class="text-4xl lg:text-4xl font-montserrat mt-2 mb-0 uppercase name">{about.name}</p>
-				<p class="text-lg font-montserrat dark:text-white mt-1 mb-2 text-gray-300">
+				<p class="text-lg font-montserrat mt-1 mb-2 text-gray-300">
 					{about.subHead}
 				</p>
 				<p class="text-lg font-inter text-gray-300 w-4/5">
@@ -160,7 +160,7 @@
 
 			<section id="projects" class="py-8">
 				<h2 class="text-2xl font-bold text-primary mb-6 uppercase">Projects</h2>
-				<div class="project-list text-gray-300">
+				<div class="project-list text-gray-300 mb-8">
 					{#each projects as project}
 						<ProjectCard {project} />
 					{/each}
