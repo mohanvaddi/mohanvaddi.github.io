@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Icon from '$src/components/Icon.svelte';
+	import Icon from '$src/lib/components/Icon.svelte';
 	import { onMount } from 'svelte';
 	import socialLinks from '$data/social-links';
 	import projects from '$data/projects';
@@ -11,7 +11,7 @@
 	let fab: boolean = false;
 
 	export let data: PageData;
-	console.log(data.likedSongs);
+	console.log('data::', data);
 
 	const scrollIntoView = (targetId: string) => {
 		const targetElement = document.getElementById(targetId);

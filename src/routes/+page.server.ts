@@ -23,18 +23,36 @@ export const load: PageServerLoad = async () => {
 	});
 
 	try {
-		const resp = await axios.post('https://accounts.spotify.com/api/token', params, {
-			headers: {
-				'content-type': 'application/x-www-form-urlencoded',
-				authorization: `Basic ${authorization}`
-			}
-		});
-		const accesstoken: string = resp.data.access_token;
+		// const resp = await axios.post('https://accounts.spotify.com/api/token', params, {
+		// 	headers: {
+		// 		'content-type': 'application/x-www-form-urlencoded',
+		// 		authorization: `Basic ${authorization}`
+		// 	}
+		// });
+		// const accesstoken: string = resp.data.access_token;
+		// const likedSongsResp = await axios.get('https://api.spotify.com/v1/me/tracks', {
+		// 	headers: { authorization: `Bearer ${accesstoken}` }
+		// });
+		// const topTracks = await axios.get(
+		// 	'https://api.spotify.com/v1/me/top/tracks?time_range=short_term',
+		// 	{
+		// 		headers: { authorization: `Bearer ${accesstoken}` }
+		// 	}
+		// );
+		// const currentPlaybackState = await axios.get('https://api.spotify.com/v1/me/player', {
+		// 	headers: { authorization: `Bearer ${accesstoken}` }
+		// });
+		// const currentTrack = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
+		// 	headers: { authorization: `Bearer ${accesstoken}` }
+		// });
+		// const recentTracks = await axios.get(
+		// 	'https://api.spotify.com/v1/me/player/recently-played?limit=1',
+		// 	{
+		// 		headers: { authorization: `Bearer ${accesstoken}` }
+		// 	}
+		// );
 
-		const likedSongsResp = await axios.get('https://api.spotify.com/v1/me/tracks', {
-			headers: { authorization: `Bearer ${accesstoken}` }
-		});
-		return { likedSongs: likedSongsResp.data };
+		return {};
 	} catch (err) {
 		console.error('spotify::error:', err);
 	}
