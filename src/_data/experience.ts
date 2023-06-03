@@ -1,3 +1,5 @@
+import type { Experience } from '$src/types/main';
+
 export default [
 	{
 		companyName: 'PointMotion Inc.',
@@ -40,4 +42,4 @@ export default [
 			'Skills: ReactJs, Spring Boot, Java, MongoDB, Docker'
 		]
 	}
-] as { companyName: string; roles: { role: string; period: string }[]; description: string[] }[];
+] as Experience[];

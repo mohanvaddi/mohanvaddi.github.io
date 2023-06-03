@@ -24,7 +24,8 @@ const config = {
 			$components: './src/components',
 			$assets: './src/assets',
 			$utils: './src/utils',
-			$data: './src/_data'
+			$data: './src/_data',
+			$lib: './src/lib'
 		}
 	}
 };

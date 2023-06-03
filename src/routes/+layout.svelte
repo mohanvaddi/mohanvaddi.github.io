@@ -1,4 +1,5 @@
 <script lang="ts">
+		import '$src/styles/_variables.scss';
 	import '$src/styles/app.scss';
 	import '@fontsource/montserrat/800.css';
 	import '@fontsource/inter';

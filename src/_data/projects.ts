@@ -1,3 +1,5 @@
+import type { Project } from '$src/types/main';
+
 export default [
 	{
 		name: 'Sound Health',
@@ -29,4 +31,4 @@ export default [
 			'Lightweight Java-based text editor with auto-completions, auto-save, and recovery. Built using JavaFX, awt, and Swing. Ideal for Java programming with efficient performance on older laptops.',
 		links: [{ name: 'github', link: 'https://github.com/mohanvaddi/JavaPad' }]
 	}
-] as { name: string; description: string; links: { name: string; link: string }[] }[];
+] as Project[];
