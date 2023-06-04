@@ -44,7 +44,7 @@
 					customDescription = isExpanded ? description.slice(0, maxDescriptionLength) : description;
 					isExpanded = !isExpanded;
 				}}
-				class="text-primary text-md font-bold mt-2 underline"
+				class="text-primary text-md font-bold mt-2 relative custom-underline-effect-primary"
 			>
 				{#if isExpanded}
 					See less

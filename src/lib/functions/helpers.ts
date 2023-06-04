@@ -9,7 +9,7 @@ export const insertHtml = (line: string) => {
 		.replace(boldRegex, '<span class="text-white">$1</span>')
 		.replace(
 			anchorRegex,
-			'<a class="custom-underline-effect" href="$2" target="_blank"><span class="text-white">$1</span></a>'
+			'<a class="relative custom-underline-effect" href="$2" target="_blank"><span class="text-white">$1</span></a>'
 		);
 	return html;
 };
