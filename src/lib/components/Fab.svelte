@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Icon from './Icon.svelte';
 	import { scrollIntoView } from '$src/lib/functions/helpers';
+	import { Milestone } from 'lucide-svelte';
 
 	export let fab: boolean;
 	export let sectionsRev: { name: string; route: string }[];
@@ -20,20 +20,14 @@
 >
 	<div class="fab shadow">
 		<div class="fab-content">
-			<Icon
-				class="icon absolute left-[25%] top-[25%]"
-				icon="paper-airplane"
-				height="32px"
-				width="32px"
-				type="solid"
-			/>
+			<Milestone class="text-primary absolute left-[20%] top-[20%]" size={32} absoluteStrokeWidth />
 		</div>
 	</div>
 	{#each sectionsRev as { name, route }}
 		<a
 			href={route}
 			class="sub-button shadow fab-opt"
-			on:click={(e) => {
+			on:click={() => {
 				scrollIntoView(route.substring(1));
 			}}
 		>
@@ -105,7 +99,6 @@
 			z-index: 2;
 			&:hover {
 				cursor: pointer;
-				background-color: $primary;
 				.icon {
 					color: white;
 					font-size: 30px;
@@ -113,10 +106,12 @@
 				.btn-text {
 					color: white;
 				}
+
+				@apply bg-primary;
 			}
 			.icon {
-				color: $primary;
 				font-size: 26px;
+				@apply text-primary;
 			}
 		}
 	}
@@ -127,7 +122,6 @@
 		top: -15px;
 		transform: translateY(-50%);
 		white-space: nowrap;
-		color: $primary;
 		padding: 0.4rem 0.6rem;
 		@apply rounded-md bg-gray-600 text-primary;
 	}

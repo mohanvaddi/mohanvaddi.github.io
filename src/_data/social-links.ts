@@ -1,8 +1,7 @@
-export default [
-	{
-		name: 'github',
-		link: 'https://github.com/mohanvaddi'
-	},
-	{ name: 'linkedIn', link: 'https://www.linkedin.com/in/mohanvaddi' },
-	{ name: 'twitter', link: 'https://twitter.com/immohanvaddi' }
-] as { name: string; link: string }[];
+const socialLinks = {
+	github: 'https://github.com/mohanvaddi',
+	linkedIn: 'https://www.linkedin.com/in/mohanvaddi',
+	twitter: 'https://twitter.com/immohanvaddi'
+};
+export type Social = keyof typeof socialLinks;
+export default socialLinks;

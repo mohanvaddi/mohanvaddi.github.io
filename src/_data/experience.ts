@@ -1,4 +1,4 @@
-import type { Experience } from '$src/types/main';
+import type { Experience } from '$lib/types/main';
 
 export default [
 	{

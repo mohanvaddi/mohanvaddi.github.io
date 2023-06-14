@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Icon from '$src/lib/components/Icon.svelte';
 	import { onMount } from 'svelte';
 	import socialLinks from '$data/social-links';
 	import projects from '$data/projects';
@@ -7,13 +6,14 @@
 	import education from '$data/education';
 	import about from '$data/about';
 	import type { PageData } from './$types';
-	import { insertHtml, scrollIntoView } from '$src/lib/functions/helpers';
+	import { scrollIntoView } from '$src/lib/functions/helpers';
 	import Experience from '$src/lib/components/portfolio/Experience.svelte';
 	import ProjectCard from '$src/lib/components/portfolio/ProjectCard.svelte';
 	import Fab from '$src/lib/components/Fab.svelte';
 	import Education from '$src/lib/components/portfolio/Education.svelte';
+	import { ArrowBigDownDash, Github, Linkedin, Send, Twitter } from 'lucide-svelte';
 
-	let fab: boolean = false;
+	let fab = false;
 
 	export let data: PageData;
 	console.log('data::', data);
@@ -21,10 +21,11 @@
 	onMount(() => {
 		const smoothScroll = (event: MouseEvent) => {
 			event.preventDefault();
-			const targetId: string = (event.target as HTMLAnchorElement)
-				.getAttribute('href')!
-				.substring(1);
-			scrollIntoView(targetId);
+			const href = (event.target as HTMLAnchorElement).getAttribute('href');
+			if (href) {
+				const targetId: string = href.substring(1);
+				scrollIntoView(targetId);
+			}
 		};
 
 		// adding smoothScroll to the links
@@ -70,6 +71,10 @@
 	const sectionsRev = sections.slice().reverse();
 </script>
 
+<svelte:head>
+	<title>{about.name}</title>
+</svelte:head>
+
 <div class="flex-grow p-0 m-0 text-white bg-dark">
 	<div class="cust-container mx-auto">
 		<div class="left px-4 md:px-8 lg:px-8">
@@ -86,10 +91,15 @@
 			<div class="mt-6 lg:mt-8">
 				<a
 					href={about.resumeHref}
-					class="button primary-outline !px-[0.4rem] !py-[0.3rem] fill-down"
+					class="button align-middle primary-outline !px-[0.4rem] !py-[0.3rem] fill-down"
 					target="_blank"
 				>
-					<Icon icon="doc-download-solid" type="solid" />
+					<ArrowBigDownDash
+						size="18"
+						class="text-primary inline align-middle"
+						strokeWidth={1.5}
+						absoluteStrokeWidth
+					/>
 					Resume
 				</a>
 			</div>
@@ -106,23 +116,36 @@
 
 			<div class="absolute bottom-12 hidden lg:block">
 				<div class="grid grid-cols-3">
-					{#each socialLinks as { name, link }}
-						<a
-							target="_blank"
-							rel="noreferrer"
-							data-sound-hover="pop"
-							data-sound-click="click"
-							href={link}
-						>
-							<Icon
-								class="mr-3 hover:scale-[1.1] active:scale-[0.95]"
-								type="solid"
-								icon={name}
-								height="32px"
-								width="32px"
-							/></a
-						>
-					{/each}
+					<a
+						class="mr-3 text-gray-600 hover:text-gray-300"
+						target="_blank"
+						rel="external noopener noreferrer"
+						data-sound-hover="pop"
+						data-sound-click="click"
+						href={socialLinks.github}
+					>
+						<Github strokeWidth={2} />
+					</a>
+					<a
+						class="mr-3 text-gray-600 hover:text-gray-300"
+						target="_blank"
+						rel="external noopener noreferrer"
+						data-sound-hover="pop"
+						data-sound-click="click"
+						href={socialLinks.linkedIn}
+					>
+						<Linkedin strokeWidth={2} />
+					</a>
+					<a
+						class="mr-3 text-gray-600 hover:text-gray-300"
+						target="_blank"
+						rel="external noopener noreferrer"
+						data-sound-hover="pop"
+						data-sound-click="click"
+						href={socialLinks.twitter}
+					>
+						<Twitter strokeWidth={2} />
+					</a>
 				</div>
 			</div>
 		</div>
@@ -179,9 +202,20 @@
 				<div class="mt-8">
 					<a
 						href="mailto:{about.email}"
-						class="button primary-outline !px-[0.4rem] !py-[0.3rem] fill-down"
+						class="button primary-outline !px-[0.4rem] !py-[0.3rem] align-middle fill-down"
 					>
-						<Icon icon="user-cicle-solid" type="solid" />
+						<Send
+							class="text-primary inline align-middle"
+							size={18}
+							strokeWidth={1.5}
+							absoluteStrokeWidth
+						/>
+						<!-- <UserCircle
+							class="text-primary inline align-middle"
+							size={18}
+							strokeWidth={1.5}
+							absoluteStrokeWidth
+						/> -->
 						Say Hello
 					</a>
 				</div>

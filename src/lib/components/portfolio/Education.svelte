@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { insertHtml } from '$src/lib/functions/helpers';
-	import type { Education } from '$src/types/main';
+	import type { Education } from '$src/lib/types/main';
 	export let education: Education;
 
 	const { universityName, qualification, stream, period, description } = education;

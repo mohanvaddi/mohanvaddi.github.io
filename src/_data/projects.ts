@@ -1,4 +1,4 @@
-import type { Project } from '$src/types/main';
+import type { Project } from '$lib/types/main';
 
 export default [
 	{
