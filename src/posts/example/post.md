@@ -6,14 +6,14 @@ date: '2023-4-14'
 categories:
   - sveltekit
   - svelte
-published: false
+published: true
 ---
 
 <script>
   import Counter from '$src/lib/components/Counter.svelte'
 </script>
 
-## Example post :)
+## Example post
 
 The counter is rendered inside Markdown.
 <Counter count={1}/>

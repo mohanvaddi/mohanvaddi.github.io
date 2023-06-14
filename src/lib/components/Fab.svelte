@@ -7,7 +7,7 @@
 </script>
 
 <div
-	class="fab-container"
+	class="fab-container lg:!hidden"
 	class:active={fab}
 	on:click={() => {
 		fab = !fab;

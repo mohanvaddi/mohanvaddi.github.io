@@ -128,7 +128,6 @@ a:active {
 .cust-container {
 	display: grid;
 	height: 100vh;
-	background-color: $dark;
 	@apply sm:w-[100vw] md:w-[100vw] lg:w-[80vw] lg:grid-cols-[0.75fr_1fr] overflow-auto;
 }
 

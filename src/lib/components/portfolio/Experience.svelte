@@ -10,7 +10,7 @@
 	let isExpanded: boolean;
 
 	// change this to increase/decrease the number of lines to show
-	// const maxDescriptionLength = 4;
+	// const maxDescriptionLength = 7;
 
 	// disabling the limit for the time being
 	const maxDescriptionLength = Infinity;
@@ -39,19 +39,23 @@
 		</ul>
 
 		{#if description.length > maxDescriptionLength}
-			<button
-				on:click={() => {
-					customDescription = isExpanded ? description.slice(0, maxDescriptionLength) : description;
-					isExpanded = !isExpanded;
-				}}
-				class="text-primary text-md font-bold mt-2 relative custom-underline-effect-primary"
-			>
-				{#if isExpanded}
-					See less
-				{:else}
-					See more
-				{/if}
-			</button>
+			<div class="w-full text-right">
+				<button
+					on:click={() => {
+						customDescription = isExpanded
+							? description.slice(0, maxDescriptionLength)
+							: description;
+						isExpanded = !isExpanded;
+					}}
+					class="text-primary !text-right text-sm font-semibold mt-2 relative custom-underline-effect-primary"
+				>
+					{#if isExpanded}
+						Show less
+					{:else}
+						Show more..
+					{/if}
+				</button>
+			</div>
 		{/if}
 	</div>
 </div>

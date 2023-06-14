@@ -6,7 +6,7 @@ export default {
 		extend: {
 			screens: {},
 			colors: {
-				dark: '#0f1117',
+				dark: 'rgb(3 7 18 / 1)',
 				primary: '#34D399'
 			},
 			fontFamily: {

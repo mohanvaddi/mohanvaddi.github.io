@@ -7,6 +7,6 @@
 	import '@fontsource/jetbrains-mono';
 </script>
 
-<html lang="en" class="dark scroll-smooth selection:bg-gray-800 dark:antialiased bg-dark">
+<html lang="en" class="dark scroll-smooth selection:bg-gray-800 dark:antialiased bg-gray-950">
 	<slot />
 </html>

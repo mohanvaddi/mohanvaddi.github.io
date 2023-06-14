@@ -11,25 +11,57 @@
 	import ProjectCard from '$src/lib/components/portfolio/ProjectCard.svelte';
 	import Fab from '$src/lib/components/Fab.svelte';
 	import Education from '$src/lib/components/portfolio/Education.svelte';
-	import { ArrowBigDownDash, Github, Linkedin, Send, Twitter } from 'lucide-svelte';
+	import {
+		ArrowBigDownDash,
+		Github,
+		Linkedin,
+		MessageCircle,
+		MessageSquare,
+		Send,
+		Twitter
+	} from 'lucide-svelte';
 
 	let fab = false;
 
-	export let data: PageData;
-	console.log('data::', data);
+	const smoothScroll = (event: MouseEvent) => {
+		event.preventDefault();
+		const href = (event.target as HTMLAnchorElement).getAttribute('href');
+		if (href) {
+			const targetId: string = href.substring(1);
+			scrollIntoView(targetId);
+		}
+	};
 
 	onMount(() => {
-		const smoothScroll = (event: MouseEvent) => {
-			event.preventDefault();
-			const href = (event.target as HTMLAnchorElement).getAttribute('href');
-			if (href) {
-				const targetId: string = href.substring(1);
-				scrollIntoView(targetId);
-			}
-		};
+		const links = document.querySelectorAll('nav ul li a');
+
+		function handleIntersection(entries: IntersectionObserverEntry[]) {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					links.forEach((link) => {
+						const id = link.getAttribute('href')!.slice(1);
+						if (id === entry.target.id) {
+							link.classList.remove('text-primary', 'custom-underline-effect-primary');
+							link.classList.add('text-gray-200');
+						} else {
+							link.classList.remove('text-gray-200');
+							link.classList.add('text-primary', 'custom-underline-effect-primary');
+						}
+					});
+				}
+			});
+		}
+		const observer = new IntersectionObserver(handleIntersection, {
+			root: null,
+			rootMargin: '0px',
+			threshold: 0.9
+		});
+		const sections = document.querySelectorAll('section');
+		sections.forEach((section) => {
+			observer.observe(section);
+		});
 
 		// adding smoothScroll to the links
-		const links = document.querySelectorAll('nav ul li a');
 		links.forEach((link) => {
 			link.addEventListener('click', smoothScroll as EventListener);
 		});
@@ -75,9 +107,9 @@
 	<title>{about.name}</title>
 </svelte:head>
 
-<div class="flex-grow p-0 m-0 text-white bg-dark">
+<div class="flex-grow p-0 m-0 text-white">
 	<div class="cust-container mx-auto">
-		<div class="left px-4 md:px-8 lg:px-8">
+		<div id="left" class="left px-4 md:px-8 lg:px-8">
 			<div class="container lg:mx-auto lg:mt-20 mt-14">
 				<p class="text-4xl lg:text-4xl font-montserrat mt-2 mb-0 uppercase name">{about.name}</p>
 				<p class="text-lg font-montserrat mt-1 mb-2 text-gray-300">
@@ -150,8 +182,8 @@
 			</div>
 		</div>
 
-		<div class="right text-black d-flex px-4 md:px-8 lg:mt-12">
-			<section id="about" class="mt-2 py-8">
+		<div id="right" class="right text-black d-flex px-4 md:px-8 lg:mt-12">
+			<section id="about" class="py-8">
 				<p class="text-lg text-gray-400">
 					{about.about}
 				</p>
@@ -202,21 +234,10 @@
 				<div class="mt-8">
 					<a
 						href="mailto:{about.email}"
-						class="button primary-outline !px-[0.4rem] !py-[0.3rem] align-middle fill-down"
+						class="button primary-outline !px-[0.4rem] !py-[0.3rem] align-middle text-md font-bold fill-down capitalize"
 					>
-						<Send
-							class="text-primary inline align-middle"
-							size={18}
-							strokeWidth={1.5}
-							absoluteStrokeWidth
-						/>
-						<!-- <UserCircle
-							class="text-primary inline align-middle"
-							size={18}
-							strokeWidth={1.5}
-							absoluteStrokeWidth
-						/> -->
-						Say Hello
+						<MessageSquare class="text-primary inline align-middle" size={18} />
+						Say hello
 					</a>
 				</div>
 			</section>
