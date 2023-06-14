@@ -69,6 +69,10 @@
 	</div>
 
 	<section>
+		{#if data.posts.length === 0}
+			<p class="text-2xl text-primary text-center mt-12 font-bold capitalize">no posts yet 🥲</p>
+		{/if}
+
 		{#if layout === 'list'}
 			<div class="posts">
 				{#each data.posts as post}

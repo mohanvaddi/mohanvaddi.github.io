@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { insertHtml } from '$lib/functions/helpers';
-	import type { Experience } from '$src/types/main';
+	import type { Experience } from '$lib/types/main';
 
 	export let experience: Experience;
 
