@@ -12,11 +12,12 @@ body {
 	display: flex;
 	flex-direction: column;
 	scroll-behavior: smooth;
+	@apply font-inter;
 }
 
 @layer components {
 	.text-shadow-primary {
-		text-shadow: #24f1a6 1px 1px 2px;
+		text-shadow: $primary 1px 1px 2px;
 	}
 	.underline-effect {
 		background: none repeat scroll 0 0 transparent;
@@ -49,7 +50,7 @@ body {
 
 .bio-selector {
 	& input {
-		color: #24f1a6;
+		color: $primary;
 		text-transform: capitalize;
 	}
 	&:not(:first-of-type, :last-of-type) {
@@ -61,7 +62,7 @@ body {
 	&:first-of-type,
 	&:last-of-type {
 		& label {
-			color: #24f1a6;
+			color: $primary;
 			text-transform: capitalize;
 		}
 	}
@@ -70,7 +71,6 @@ body {
 .bio-ul {
 	list-style-type: none;
 }
-
 
 // to remove the blue highlight on mobile
 input,
@@ -122,12 +122,13 @@ a:active {
 
 .name {
 	letter-spacing: -1.5px; /* Adjust the value to reduce the space between characters */
+	font-weight: 800;
 }
 
 .cust-container {
 	display: grid;
 	height: 100vh;
-	background-color: #0f172a;
+	background-color: $dark;
 	@apply sm:w-[100vw] md:w-[100vw] lg:w-[80vw] lg:grid-cols-[0.75fr_1fr] overflow-auto;
 }
 
@@ -220,7 +221,7 @@ p {
 	z-index: 1;
 	height: 2px;
 	// background-color: #ddd;
-	@apply bg-gray-400;
+	@apply bg-gray-900;
 }
 
 #projects {
@@ -257,14 +258,6 @@ p {
 	margin-bottom: 20px;
 }
 
-.project-links {
-	margin-top: auto;
-}
-
-.project-links a {
-	display: inline-block;
-	margin-right: 10px;
-}
 project-card {
 	border-radius: 4px;
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -281,7 +274,74 @@ project-card {
 	margin-bottom: 1rem;
 }
 
-.project-links {
-	display: flex;
-	justify-content: space-between;
+.custom-gray-text {
+	color: #9eaab7;
+}
+
+.shiki {
+	// margin: 1rem auto 4.5rem;
+	overflow-x: auto;
+	max-width: 100%;
+	@apply p-4;
+
+	&.custom-pre {
+		width: 100%;
+		overflow-x: auto;
+		overflow-y: hidden;
+		white-space: pre-wrap;
+		@apply my-4;
+
+		> code {
+			white-space: pre-wrap;
+			@apply sm:text-sm md:text-base font-jetbrains-mono rounded-lg;
+
+			> .highlight-line {
+				display: inline-block;
+				width: calc(100% + 1rem);
+				background-color: rgba(54, 85, 70, 0.514);
+				border-right: 0.25rem solid hsl(154, 33%, 39%);
+				// margin-left: calc(-1 * 0.25rem);
+				@apply p-0 m-0;
+			}
+		}
+	}
+}
+
+.heading {
+	@apply text-gray-300;
+}
+
+.hover-underline {
+	@apply hover:underline hover:text-gray-100 underline-offset-4;
+}
+
+.blog {
+	> p {
+		@apply text-gray-300 sm:mt-2 md:mt-3 text-lg md:text-xl leading-relaxed md:leading-relaxed md:tracking-normal;
+	}
+	> h1 {
+		@apply heading sm:mt-2 md:my-3 font-semibold text-2xl md:text-3xl leading-8 md:leading-normal hover-underline;
+	}
+
+	> h2 {
+		@apply heading sm:mt-2 md:my-3 font-semibold text-xl md:text-2xl leading-8 md:leading-normal hover-underline;
+	}
+
+	> .hr {
+		@apply separator my-4;
+	}
+
+	.custom-inline-code {
+		background-color: rgba(83, 64, 37, 0.5);
+		color: rgb(190, 149, 88);
+		@apply rounded-md px-[0.3rem] py-[0.05rem]  md:px-2 md:py-[0.1rem] font-jetbrains-mono font-semibold text-sm md:text-base;
+	}
+
+	.custom-em {
+		@apply italic font-semibold text-primary;
+	}
+
+	p > del {
+		@apply line-through text-red-500;
+	}
 }

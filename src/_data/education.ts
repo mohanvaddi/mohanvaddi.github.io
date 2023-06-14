@@ -1,4 +1,4 @@
-import type { Education } from '$src/types/main';
+import type { Education } from '$lib/types/main';
 
 export default [
 	{
