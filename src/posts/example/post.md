@@ -10,13 +10,11 @@ published: true
 ---
 
 <script>
-  import Counter from '$src/lib/components/Counter.svelte'
 </script>
 
 ## Example post
 
 The counter is rendered inside Markdown.
-<Counter count={1}/>
 
 ```typescript
 type DateStyle = Intl.DateTimeFormatOptions['dateStyle'];

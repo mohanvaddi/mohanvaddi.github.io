@@ -5,21 +5,12 @@
 	import experience from '$data/experience';
 	import education from '$data/education';
 	import about from '$data/about';
-	import type { PageData } from './$types';
 	import { scrollIntoView } from '$src/lib/functions/helpers';
 	import Experience from '$src/lib/components/portfolio/Experience.svelte';
 	import ProjectCard from '$src/lib/components/portfolio/ProjectCard.svelte';
 	import Fab from '$src/lib/components/Fab.svelte';
 	import Education from '$src/lib/components/portfolio/Education.svelte';
-	import {
-		ArrowBigDownDash,
-		Github,
-		Linkedin,
-		MessageCircle,
-		MessageSquare,
-		Send,
-		Twitter
-	} from 'lucide-svelte';
+	import { ArrowBigDownDash, Github, Linkedin, MessageSquare, Twitter } from 'lucide-svelte';
 
 	let fab = false;
 
@@ -42,9 +33,9 @@
 						const id = link.getAttribute('href')!.slice(1);
 						if (id === entry.target.id) {
 							link.classList.remove('text-primary', 'custom-underline-effect-primary');
-							link.classList.add('text-gray-200');
+							link.classList.add('text-gray-200', 'underline');
 						} else {
-							link.classList.remove('text-gray-200');
+							link.classList.remove('text-gray-200', 'underline');
 							link.classList.add('text-primary', 'custom-underline-effect-primary');
 						}
 					});
@@ -140,7 +131,7 @@
 				<ul>
 					{#each sections as { name, route }}
 						<li>
-							<a class="custom-underline-effect" href={route}>{name}</a>
+							<a class="underline-offset-4" href={route}>{name}</a>
 						</li>
 					{/each}
 				</ul>
