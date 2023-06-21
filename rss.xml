@@ -2,14 +2,14 @@
 			<channel>
 				<title>Mohan's Blog</title>
 				<description>A place where I share my thoughts and random tidbits.</description>
-				<link>https://mohanvaddi.github.io/</link>
-				<atom:link href="https://mohanvaddi.github.io//rss.xml" rel="self" type="application/rss+xml"/>
+				<link>https://mohanvaddi.github.io</link>
+				<atom:link href="https://mohanvaddi.github.io/rss.xml" rel="self" type="application/rss+xml"/>
 				
 						<item>
 							<title>Example</title>
 							<description>First post.</description>
-							<link>https://mohanvaddi.github.io/blog/example</link>
-							<guid isPermaLink="true">https://mohanvaddi.github.io/blog/example</guid>
+							<link>https://mohanvaddi.github.ioblog/example</link>
+							<guid isPermaLink="true">https://mohanvaddi.github.ioblog/example</guid>
 							<pubDate>Thu, 13 Apr 2023 18:30:00 GMT</pubDate>
 						</item>
 					
