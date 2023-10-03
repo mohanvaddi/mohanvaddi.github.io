@@ -42,9 +42,7 @@
 			<div class="w-full text-right">
 				<button
 					on:click={() => {
-						customDescription = isExpanded
-							? description.slice(0, maxDescriptionLength)
-							: description;
+						customDescription = isExpanded ? description.slice(0, maxDescriptionLength) : description;
 						isExpanded = !isExpanded;
 					}}
 					class="text-primary !text-right text-sm font-semibold mt-2 relative custom-underline-effect-primary"

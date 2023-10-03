@@ -2,12 +2,9 @@ import axios from 'axios';
 
 export async function getRecentTracks(accessToken: string, limit = 1) {
 	try {
-		const recentTracks = await axios.get(
-			`https://api.spotify.com/v1/me/player/recently-played?limit=${limit}`,
-			{
-				headers: { authorization: `Bearer ${accessToken}` }
-			}
-		);
+		const recentTracks = await axios.get(`https://api.spotify.com/v1/me/player/recently-played?limit=${limit}`, {
+			headers: { authorization: `Bearer ${accessToken}` }
+		});
 
 		return recentTracks.data;
 	} catch (err) {

@@ -26,9 +26,7 @@ async function getPosts() {
 	}
 
 	// sorting posts in reverse chronological order
-	posts = posts.sort(
-		(first, second) => new Date(second.date).getTime() - new Date(first.date).getTime()
-	);
+	posts = posts.sort((first, second) => new Date(second.date).getTime() - new Date(first.date).getTime());
 
 	return posts;
 }

@@ -11,10 +11,7 @@
 		{:else}
 			<p class="text-sm text-gray-400 font-semibold capitalize">last played :</p>
 		{/if}
-		<div
-			class="relative shadow my-2 max-w-full md:max-w-sm w-full bg-gray-900 rounded-sm"
-			id={track.item.id}
-		>
+		<div class="relative shadow my-2 max-w-full md:max-w-sm w-full bg-gray-900 rounded-sm" id={track.item.id}>
 			<div class="flex gap-x-4 my-auto mx-auto">
 				<div>
 					<img src={track.item.album.images[2].url} class="h-[70px] w-[70px] rounded-sm" alt="" />
@@ -24,16 +21,8 @@
 					<p class="text-sm text-gray-400">{track.item.artists[0].name}</p>
 				</div>
 				<div class="absolute right-[0.6rem] bottom-[0.6rem]">
-					<a
-						href={track.item.external_urls.spotify}
-						target="_blank"
-						rel="external noopener noreferrer"
-					>
-						<img
-							class="w-[24px] h-[24px] bg-gray-950"
-							src="assets/icons/Spotify_Icon_RGB_Green.png"
-							alt=""
-						/>
+					<a href={track.item.external_urls.spotify} target="_blank" rel="external noopener noreferrer">
+						<img class="w-[24px] h-[24px] bg-gray-950" src="assets/icons/Spotify_Icon_RGB_Green.png" alt="" />
 					</a>
 				</div>
 			</div>
